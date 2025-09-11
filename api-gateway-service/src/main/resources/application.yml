@@ -1,0 +1,26 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: http://localhost:8080
+              predicates:
+                - Path=/api/users/**
+            - id: board-service-jwt
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/boards
+                - Method=POST
+              filters:
+                - JwtAuthenticationFilter
+            - id: board-service
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/boards/**
+jwt:
+  secret: jscode-secret-1234-1234-1234-1234
