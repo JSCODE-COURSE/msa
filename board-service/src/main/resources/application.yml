@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3307/board-db # DB ??
-    username: root # DB ??
-    password: password # DB ????
+    url: jdbc:mysql://localhost:3307/board-db
+    username: root
+    password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -21,8 +21,8 @@ spring:
       # 메시지의 value 직렬화 방식 : 자바 객체를 문자열(String)로 변환해서 Kafka에 전송
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 client:
   user-service:
     url: http://localhost:8080
